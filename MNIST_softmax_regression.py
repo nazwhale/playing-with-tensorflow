@@ -34,10 +34,10 @@ correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
-print(sess.run(b))
+Weights = sess.run(W)
 
-import csv
-
-with open("trained-weights.csv", "wb") as f:
-    writer = csv.writer(f)
-    writer.writerows(sess.run(W))
+# import csv
+#
+# with open("trained-weights.csv", "wb") as f:
+#     writer = csv.writer(f)
+#     writer.writerows(sess.run(W))
