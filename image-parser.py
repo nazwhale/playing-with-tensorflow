@@ -18,7 +18,7 @@ bias = [-0.12531213, 0.34291193, -0.07756195, -0.15483579, 0.14375827,  0.381409
 array_0 = []
 i = 0
 while i < 784:
-    array_0.append(Weights2[i][0])
+    array_0.append(Weights2[i][2])
     i = i + 1
 
 my_number_array = []
@@ -27,7 +27,14 @@ while height < 28:
     line_array = []
     width = 0
     while width < 28:
-        line_array.append(array_0[(height * 28) + width])
+        pix = array_0[(height * 28) + width]
+        if pix > 0:
+            pix_arr = [0, 0, pix*300, 255]
+        elif pix < 0:
+            pix_arr = [0-(pix*300), 0, 0, 255]
+        else:
+            pix_arr = [0, 0, 0, 255]
+        line_array.append(pix_arr)
         width = width + 1
     my_number_array.append(line_array)
     height = height + 1
@@ -36,7 +43,7 @@ data = np.asarray(my_number_array)
 #Rescale to 0-255 and convert to uint8
 rescaled = (255.0 / data.max() * (data - data.min())).astype(np.uint8)
 im = Image.fromarray(rescaled)
-# im.save('test.png')
+im.save('test.png')
 
 
 
