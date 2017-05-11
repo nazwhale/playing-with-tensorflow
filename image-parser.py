@@ -3,6 +3,7 @@ from weights import Weights2
 import numpy as np
 import PIL
 from PIL import Image
+import tensorflow as tf
 
 I = np.asarray(PIL.Image.open('its_a_zero.png'))
 I = I.flatten()
@@ -30,14 +31,10 @@ while height < 28:
         width = width + 1
     my_number_array.append(line_array)
     height = height + 1
-print(my_number_array)
-print("!!!")
+
 data = np.asarray(my_number_array)
-print(data)
-print("!!!")
 #Rescale to 0-255 and convert to uint8
 rescaled = (255.0 / data.max() * (data - data.min())).astype(np.uint8)
-print(rescaled)
 im = Image.fromarray(rescaled)
 # im.save('test.png')
 
