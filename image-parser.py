@@ -4,7 +4,7 @@ import numpy as np
 import PIL
 from PIL import Image
 
-I = np.asarray(PIL.Image.open('its_a_five.png'))
+I = np.asarray(PIL.Image.open('its_a_zero.png'))
 
 I = I.flatten()
 
@@ -16,122 +16,74 @@ bias = [-0.12531213, 0.34291193, -0.07756195, -0.15483579, 0.14375827,  0.381409
 w = Weights2
 
 probability_0 = 0
-
 i = 0
 while i < 284:
     probability_0 = probability_0 + (w[i][0] * I[i])
     i = i+1
 
-print("probability 0: ")
-print(probability_0/255)
-
 probability_1 = 0
-
 i = 0
 while i < 284:
     probability_1 = probability_1 + (w[i][1] * I[i])
     i = i+1
 
-print("probability 1: ")
-print(probability_1/255)
-
 probability_2 = 0
-
 i = 0
 while i < 284:
     probability_2 = probability_2 + (w[i][2] * I[i])
     i = i+1
 
-print("probability 2: ")
-print(probability_2/255)
-
 probability_3 = 0
-
 i = 0
 while i < 284:
     probability_3 = probability_3 + (w[i][3] * I[i])
     i = i+1
 
-print("probability 3: ")
-print(probability_3/255)
-
 probability_4 = 0
-
 i = 0
 while i < 284:
     probability_4 = probability_4 + (w[i][4] * I[i])
     i = i+1
 
-print("probability 4: ")
-print(probability_4/255)
-
 probability_5 = 0
-
 i = 0
 while i < 284:
     probability_5 = probability_5 + (w[i][5] * I[i])
     i = i+1
 
-print("probability 5: ")
-print(probability_5/255)
-
 probability_6 = 0
-
 i = 0
 while i < 284:
     probability_6 = probability_6 + (w[i][6] * I[i])
     i = i+1
 
-print("probability 6: ")
-print(probability_6/255)
-
 probability_7 = 0
-
 i = 0
 while i < 284:
     probability_7 = probability_7 + (w[i][7] * I[i])
     i = i+1
 
-print("probability 7: ")
-print(probability_7/255)
-
 probability_8 = 0
-
 i = 0
 while i < 284:
     probability_8 = probability_8 + (w[i][8] * I[i])
     i = i+1
 
-print("probability 8: ")
-print(probability_8/255)
-
 probability_9 = 0
-
 i = 0
 while i < 284:
     probability_9 = probability_9 + (w[i][9] * I[i])
     i = i+1
 
-print("probability 9: ")
-print(probability_9/255)
-
 probability_array = [probability_0/255, probability_1/255, probability_2/255, probability_3/255, probability_4/255, probability_5/255, probability_6/255, probability_7/255, probability_8/255, probability_9/255]
 
 mean = np.mean(probability_array)
-print("mean:")
-print(mean)
-
 std = np.std(probability_array)
-print("std:")
-print(std)
 
-z_score_array = []
-
+final_array = []
 i = 0
 while i < 10:
-    z_score_array.append((probability_array[i] - mean)/std)
+    final_array.append(probability_array[i] + bias[i])
     i = i + 1
 
-print(z_score_array)
-
-# fp = (np.dot(np.transpose(w), J))/2550 + bias
+print(final_array)
